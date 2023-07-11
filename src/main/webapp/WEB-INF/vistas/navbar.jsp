@@ -1,4 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ page session="true"%>
 
 <nav class="navbar navbar-expand-lg navbar-dark">
@@ -18,18 +22,38 @@
 					class="nav-item ${pageContext.request.servletPath == '/home.jsp' ? 'active' : ''}">
 					<a class="nav-link" href="<core:url value='/' />">Inicio</a>
 				</li>
-<!-- 				<li class="nav-item"><a class="nav-link" href="contacto.jsp">Contacto</a> -->
-<!-- 				</li> -->
+				<!-- <li class="nav-item"><a class="nav-link" href="contacto.jsp">Contacto</a>
+                </li> -->
 			</ul>
-			<%-- 			<c:if test="${not empty sessionScope.usuario}"> --%>
-			<!-- 				<p class="mx-3 mt-3 text-light"> -->
-			<%-- 					Bienvenido(a) <span class="fw-bold text-capitalize">${sessionScope.usuario}</span> --%>
-			<!-- 				</p> -->
-			<!-- 				<form class="form-inline" action="ServletLogout" method="post"> -->
-			<!-- 					<button class="btn my-2 my-sm-0 btn-logout" type="submit">Cerrar -->
-			<!-- 						sesión</button> -->
-			<!-- 				</form> -->
-			<%-- 			</c:if> --%>
 		</div>
+
+		<div>
+			<div class="d-flex justify-content-between align-items-center">
+				<core:if test="${pageContext.request.userPrincipal != null}">
+					<p class="text-white-50 mx-3 my-2">
+						Bienvenido <span class="fw-bold text-capitalize"><sec:authentication
+								property="principal.username" /></span>
+					</p>
+
+					<form class="form-inline"
+						action="${pageContext.request.contextPath}/logout" method="post">
+						<button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Cerrar
+							sesión</button>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</form>
+				</core:if>
+				<core:if test="${pageContext.request.userPrincipal == null}">
+					<a class="btn btn-primary d-sm-none"
+						href="${pageContext.request.contextPath}/login">Iniciar sesión</a>
+					<form class="form-inline d-none d-sm-block"
+						action="${pageContext.request.contextPath}/login" method="get">
+						<button class="btn btn-primary my-2 my-sm-0" type="submit">Iniciar
+							sesión</button>
+					</form>
+				</core:if>
+			</div>
+		</div>
+
 	</div>
 </nav>

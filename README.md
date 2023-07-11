@@ -1,4 +1,4 @@
-# M6 Ejercicio Grupal 6
+# M6 Ejercicio Grupal 7.1
 
 ## Integrantes
 
