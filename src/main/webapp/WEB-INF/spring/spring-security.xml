@@ -19,8 +19,8 @@
 		<intercept-url pattern="/list-capacitations"
 			access="hasAnyAuthority('ADMIN', 'USER')" />
 
-		<!-- <intercept-url pattern="/api/*" -->
-		<!-- access="hasAnyAuthority('ADMIN')" /> -->
+		<intercept-url pattern="/api/*"
+			access="hasAnyAuthority('ADMIN')" />
 
 
 		<form-login login-page="/login"

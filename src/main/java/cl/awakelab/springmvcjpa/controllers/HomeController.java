@@ -1,4 +1,4 @@
-package cl.awakelab.springmvcjpa;
+package cl.awakelab.springmvcjpa.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
